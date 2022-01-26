@@ -1,0 +1,35 @@
+#!/bin/bash
+yum install httpd -y
+systemctl enable httpd
+mkdir /var/www/html/service/
+echo "<h1>This is service1a App" > /var/www/html/service/index.html
+systemctl start httpd
+
+#!/bin/bash
+yum install httpd -y
+systemctl enable httpd
+mkdir /var/www/html/service/
+echo "<h1>This is service1b App" > /var/www/html/service/index.html
+systemctl start httpd
+
+
+
+
+Banking Application: (Bank, Branch, CUstomer, Trnasaction, Account)
+http://654.54.65.00:8083/bank -3instances
+http://54.54.68.00:8085/branch -3instances
+http://21.54.65.00:8086/customer -3instances
+http://89.54.65.00:8088/transaction -3instances
+http://53.54.65.00:8089/account -3instances
+
+
+
+LB - http://abcbanking.com/transaction*
+
+
+2 ec2-instaces(each instaces wil have some code) (LB these instaces)
+
+
+OSI
+ALB - (work on Layer-7 of OSI model) - HTTP
+NLB - (Layer-4)  - TCP (Static IP Address)
