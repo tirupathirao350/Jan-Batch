@@ -33,3 +33,15 @@ LB - http://abcbanking.com/transaction*
 OSI
 ALB - (work on Layer-7 of OSI model) - HTTP
 NLB - (Layer-4)  - TCP (Static IP Address)
+
+
+NLB: 
+(create 2 ec2 instances and add the below code snippet with different service instances)
+(Create a LB prior to that create Target group and attch to LB)
+
+#!/bin/bash
+yum install httpd -y
+systemctl enable httpd
+mkdir /var/www/html/
+echo "<h1>This is service1 App" > /var/www/html/index.html
+systemctl start httpd
