@@ -45,3 +45,19 @@ systemctl enable httpd
 mkdir /var/www/html/
 echo "<h1>This is service1 App" > /var/www/html/index.html
 systemctl start httpd
+
+================================================================================
+Maven (Build Tool) (pom(Project Object Model).xml)
+
+1. clone your repo Codebase shared by the developers. (using git)
+2. We need to build the application using maven tool (mvn clean install, mvn clean package) -> output(.war/.jar)
+3. Run the .war/.jar file on the server
+
+sudo yum install git -y
+sudo yum install java -y
+sudo yum install maven -y
+
+https://github.com/anilkumar23/employee-service
+git clone  
+
+java -jar <jarfile-name>
