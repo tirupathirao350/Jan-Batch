@@ -61,3 +61,26 @@ https://github.com/anilkumar23/employee-service
 git clone  
 
 java -jar <jarfile-name>
+
+
+=============================================
+Docker 
+
+
+Source Code (Lot of code, files and all other html pages) -> Bundled/packaged -> .jar (To run this jar we need 2 softwares/tools to be installed - 1. Java, 2.Maven)
+Dev, SIT, UAT, PROD
+
+We are packaging the .jar & Environment to run the appliation -> Docker Image
+
+DOcker File 
+
+sudo yum install git -y
+sudo yum install maven -y
+sudo yum install -y docker
+sudo systemctl start docker
+sudo setfacl -m user:ec2-user:rw /var/run/docker.sock
+docker images (check for images)
+docker build -f Dockerfile -t employee-service .
+docker run -t --name employee-container -p 8082:8082 employee-service
+
+Image vs Container (Running instance of your image)
