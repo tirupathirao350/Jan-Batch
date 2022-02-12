@@ -73,3 +73,47 @@ aws iam attach-role-policy \
 15. kubectl get all (once your deployments and pods are available goto next step)
 16. kubectl apply -f service.yaml (note down the port which u got)
 17. access ur appliaction on browser using Workernode IPv4 adress and service port. (Make sure u will have all traffic on ur security group of ur worker nodes)
+
+
+
+
+
+
+
+------------------------------
+https://github.com/wardviaene/terraform-course/tree/master/eks-demo
+
+---------------------
+AWS EKS With Terraform:
+1. sudo yum install git -y
+2. install terraform: 
+	wget https://releases.hashicorp.com/terraform/0.12.31/terraform_0.12.31_linux_amd64.zip
+	unzip terraform_0.12.31_linux_amd64.zip
+	mkdir $HOME/bin && cp ./terraform $HOME/bin/terraform && export PATH=$HOME/bin:$PATH
+	sudo cp ./terraform /usr/bin/terraform && export PATH=/usr/bin:$PATH
+3. install kubectl, iam-authenticator, aws configure
+4. Clone project: git clone https://github.com/wardviaene/terraform-course.git and cd terraform-course/eks-demo/
+5. terraform init
+6. terraform plan (we can skip this terraform plan as we can see in terraform apply)
+7. terraform apply (if you want to update already created infra - terraform refresh then terraform apply && If you want to delete ur infra use - terraform destroy)
+8. Open duplicate session parallely (in order to deploy sample application and test our cluster)
+	- install maven
+	- install docker
+	- clone employee service project
+	- Build and generate image and push to ECR
+	- Change your deployment.yaml file wrt ECR image URI
+9. terraform output kubeconfig > kubeconfig
+export KUBECONFIG=kubeconfig
+terraform output config-map-aws-auth > aws-auth.yaml
+
+aws eks --region us-east-1 update-kubeconfig --name terraform-eks-demo
+kubectl get all
+kubectl apply -f aws-auth.yaml
+kubectl get nodes --watch
+
+10. Move to the duplicate session where u are having deployment and service yaml files location
+	- aws eks --region us-east-1 update-kubeconfig --name terraform-eks-demo
+	- kubectl apply -f deployment.yaml
+	- kubectl get all
+	- kubectl apply -f service.yaml
+	kubectl get all
