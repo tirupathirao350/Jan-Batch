@@ -117,3 +117,25 @@ kubectl get nodes --watch
 	- kubectl get all
 	- kubectl apply -f service.yaml
 	kubectl get all
+
+
+======================Jenkins ==========================
+==================== Jenkins ==========================
+sudo yum -y update
+sudo yum install java-1.8.0
+sudo yum install git -y
+sudo yum install maven -y
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+sudo yum install jenkins -y
+sudo systemctl start jenkins
+systemctl status jenkins
+sudo yum install -y docker
+sudo systemctl start docker
+sudo setfacl -m user:ec2-user:rw /var/run/docker.sock
+sudo usermod -aG docker jenkins
+sudo vi /etc/sudoers  ========> jenkins ALL=(ALL) NOPASSWD: ALL
+sudo service jenkins restart
+sudo systemctl enable jenkins
+
+http://52.23.233.195:8080/github-webhook/
